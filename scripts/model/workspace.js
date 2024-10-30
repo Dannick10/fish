@@ -1,5 +1,6 @@
 import Fish from "./fishModel.js";
 import { root } from "../config.js";
+import { randomColor } from "../config.js";
 
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
@@ -11,6 +12,12 @@ export default class Workspace {
   constructor() {
     this.fishs = [];
     this.createFish();
+
+    canvas.addEventListener('click', () => {
+      this.fishs.forEach((fish) => {
+        fish.color = randomColor()
+      })
+    })
   }
 
   createFish() {
@@ -22,7 +29,7 @@ export default class Workspace {
           root.extensionFish,
           0.2,
           root.lengthFish,
-          root.colorFIsh
+          randomColor()
         )
       );
     }
